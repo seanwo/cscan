@@ -37,7 +37,7 @@ public class Notifier {
                 recipients.append(emailAddress);
                 first = false;
             }
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients.toString(), false));
+            msg.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(recipients.toString(), false));
             msg.setSubject(subject);
             msg.setText(body);
             msg.setHeader("X-Mailer", "cscan");
