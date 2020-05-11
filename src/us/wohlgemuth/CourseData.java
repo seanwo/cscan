@@ -86,6 +86,14 @@ public class CourseData implements Serializable {
 
     public static ArrayList<keyChange> findChanges(Crn crn1, Crn crn2) {
         ArrayList<keyChange> changes = new ArrayList<>();
+        if (null == crn1) {
+            changes.add(new keyChange("Raw", "<null>", "\"" + crn2.getRaw() + "\""));
+            return changes;
+        }
+        if (null == crn2) {
+            changes.add(new keyChange("Raw", "\"" + crn1.getRaw() + "\"", "<null>"));
+            return changes;
+        }
         if (crn1.secType.compareTo(crn2.secType) != 0)
             changes.add(new keyChange("Sec Type", crn1.secType, crn2.secType));
         if (crn1.crn.compareTo(crn2.crn) != 0) changes.add(new keyChange("CRN", crn1.crn, crn2.crn));

@@ -33,7 +33,13 @@ public class Monitor {
             CourseData.Crn prev = prevCourseData.getCourseDetail(crn);
             CourseData.Crn curr = currCourseData.getCourseDetail(crn);
             ArrayList<CourseData.keyChange> changes = CourseData.findChanges(prev, curr);
-            body.append("CRN: " + curr.getCrn() + " Course: " + curr.getCourse() + " Title: " + curr.getTitle() + " Instructor: " + curr.getInstructor() + "\n");
+            if (null != curr) {
+                body.append("CRN: " + curr.getCrn() + " Course: " + curr.getCourse() + " Title: " + curr.getTitle() + " Instructor: " + curr.getInstructor() + "\n");
+            } else if (null != prev) {
+                body.append("CRN: " + prev.getCrn() + " Course: " + prev.getCourse() + " Title: " + prev.getTitle() + " Instructor: " + prev.getInstructor() + "\n");
+            } else {
+                body.append("CRN: " + crn + "\n");
+            }
             for (CourseData.keyChange change : changes) {
                 body.append(change.key + ": [" + change.value1 + " -> " + change.value2 + "]\n");
             }
