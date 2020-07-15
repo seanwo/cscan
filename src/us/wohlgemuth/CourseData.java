@@ -21,6 +21,7 @@ public class CourseData implements Serializable {
         private String enrl;
         private String avail;
         private String waitList;
+        private String mtyp;
         private String days;
         private String start;
         private String end;
@@ -63,12 +64,13 @@ public class CourseData implements Serializable {
             enrl = raw.substring(66, 70).trim();
             avail = raw.substring(71, 79).trim();
             waitList = raw.substring(80, 84).trim();
-            days = raw.substring(85, 92).trim();
-            start = raw.substring(93, 100).trim();
-            end = raw.substring(101, 108).trim();
-            bldg = raw.substring(109, 114).trim();
-            room = raw.substring(115, 125).trim();
-            instructor = raw.substring(126).trim();
+            mtyp = raw.substring(85, 89).trim();
+            days = raw.substring(90, 97).trim();
+            start = raw.substring(98, 105).trim();
+            end = raw.substring(106, 113).trim();
+            bldg = raw.substring(114, 119).trim();
+            room = raw.substring(120, 130).trim();
+            instructor = raw.substring(131).trim();
         }
     }
 
@@ -106,6 +108,7 @@ public class CourseData implements Serializable {
         if (crn1.avail.compareTo(crn2.avail) != 0) changes.add(new keyChange("Avail", crn1.avail, crn2.avail));
         if (crn1.waitList.compareTo(crn2.waitList) != 0)
             changes.add(new keyChange("Wait List", crn1.waitList, crn2.waitList));
+        if (crn1.mtyp.compareTo(crn2.mtyp) != 0) changes.add(new keyChange("MTYP", crn1.mtyp, crn2.mtyp));
         if (crn1.days.compareTo(crn2.days) != 0) changes.add(new keyChange("Days", crn1.days, crn2.days));
         if (crn1.start.compareTo(crn2.start) != 0) changes.add(new keyChange("Start", crn1.start, crn2.start));
         if (crn1.end.compareTo(crn2.end) != 0) changes.add(new keyChange("End", crn1.end, crn2.end));
