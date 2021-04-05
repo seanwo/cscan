@@ -72,6 +72,7 @@ public class SiteParser {
     private ArrayList<CourseData.Crn> getDetails(Document document, String crn) {
         ArrayList<CourseData.Crn> details = new ArrayList<>();
         String body = document.body().toString();
+        body = body.replace("&amp;", "&");
         String[] lines = body.split(System.getProperty("line.separator"));
         for (String line : lines) {
             if ((line.length() >= 10) && (line.substring(5, 10).compareTo(crn) == 0)) {
