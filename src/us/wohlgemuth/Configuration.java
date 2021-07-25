@@ -47,6 +47,7 @@ public class Configuration {
     private String smtpHost;
     private String smtpUser;
     private String smtpPassword;
+    private String smtpFrom;
     private Integer intervalMinutes = 0;
     private ArrayList<String> emailAddresses = new ArrayList<>();
     private String term;
@@ -70,6 +71,10 @@ public class Configuration {
 
     public String getSmtpPassword() {
         return smtpPassword;
+    }
+
+    public String getSmtpFrom() {
+        return smtpFrom;
     }
 
     public Integer getIntervalMinutes() {
@@ -104,6 +109,7 @@ public class Configuration {
             root.appendChild(interval);
             Element smtp = doc.createElement("smtp");
             smtp.setAttribute("host", "smtp.gmail.com");
+            smtp.setAttribute("from", "user@gmail.com");
             smtp.setAttribute("user", "user@gmail.com");
             smtp.setAttribute("password", "password");
             root.appendChild(smtp);
@@ -154,6 +160,7 @@ public class Configuration {
         smtpHost = eSmtp.getAttribute("host");
         smtpUser = eSmtp.getAttribute("user");
         smtpPassword = eSmtp.getAttribute("password");
+        smtpFrom = eSmtp.getAttribute("from");
         if ((null == smtpHost) || (smtpHost.isEmpty())) {
             throw new ConfigurationException("smtp node missing required host attribute");
         }
@@ -162,6 +169,9 @@ public class Configuration {
         }
         if ((null == smtpPassword) || (smtpPassword.isEmpty())) {
             throw new ConfigurationException("smtp node missing required password attribute");
+        }
+        if ((null == smtpFrom) || (smtpFrom.isEmpty())) {
+            throw new ConfigurationException("smtp node missing required from attribute");
         }
     }
 
